@@ -7,17 +7,20 @@
 struct Node {                                      
    int data; // each listNode contains a character 
    struct Node *nextPtr; // pointer to next node
+   struct Node *pPtr; // pointer to next node
 }; // end structure listNode                        
 
 typedef struct Node LLnode; // synonym for struct listNode
-typedef LLnode *LLPtr; // synonym for ListNode*
+typedef LLnode * LLPtr; // synonym for ListNode*
 
 // prototypes
 
-int deletes( LLPtr *sPtr, int value );
-int isEmpty( LLPtr sPtr );
 void insert( LLPtr *sPtr, int value );
+int deletes( LLPtr *sPtr, int value );
+
+int isEmpty( LLPtr sPtr );
 void printList( LLPtr currentPtr );
+void reverseList(LLPtr currentPtr );
 void instructions( void );
 
 int main( void )
@@ -188,6 +191,28 @@ void printList( LLPtr currentPtr )
        
 
      
+       
+   } // end else
+} // end function printList
+
+void reverseList( LLPtr currentPtr )
+{ 
+   // if list is empty
+   if ( isEmpty( currentPtr ) ) {
+      puts( "List is empty.\n" );
+   } // end if
+   else { 
+      puts( "The reverse list is:" );
+       while ( currentPtr->nextPtr!= NULL ) 
+              currentPtr = currentPtr->nextPtr;
+
+      // while not the end of the list
+      while ( currentPtr->pPtr!= NULL ) {
+         printf( "%d --> ", currentPtr->data );
+         currentPtr = currentPtr->pPtr;   
+      } // end while
+
+      printf( "%d --> NULL\n",currentPtr->data );
        
    } // end else
 } // end function printList
